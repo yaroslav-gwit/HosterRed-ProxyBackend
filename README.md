@@ -1,3 +1,9 @@
 # HosterRed-ProxyBackend
-## Activate the virtual environment
-source ${PROXY_INSTALL_DIR}
+## Installation
+```
+installation procedure here
+```
+## Run
+```
+basic flags here
+```
