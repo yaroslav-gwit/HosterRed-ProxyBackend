@@ -58,21 +58,21 @@ class SSLCerts:
         if self.fake:
             print(command)
         else:
-            subprocess.run(command, shell=True, stdout=None)
+            subprocess.run(command, shell=True)
         # Create SSL check here
         # Copy over new certificates if the operation was successfull
         command = "cat /etc/letsencrypt/live/" + self.frontend_adress + "/fullchain.pem /etc/letsencrypt/live/" + self.frontend_adress + "/privkey.pem > /ssl/" + self.frontend_adress + ".pem"
         if self.fake:
             print(command)
         else:
-            subprocess.run(command, shell=True, stdout=None)
+            subprocess.run(command, shell=True)
 
         if self.www_redirection:
             command = "certbot certonly --standalone -d www." + self.frontend_adress + " --non-interactive --agree-tos --email=slv@yari.pw --http-01-port=8888"
             if self.fake:
                 print(command)
             else:
-                subprocess.run(command, shell=True, stdout=None)
+                subprocess.run(command, shell=True)
 
             # Create SSL check here
             # Copy over new certificates if the operation was successfull
@@ -81,7 +81,7 @@ class SSLCerts:
             if self.fake:
                 print(command)
             else:
-                subprocess.run(command, shell=True, stdout=None)
+                subprocess.run(command, shell=True)
 
         status = ("Success", "Failure")
         return status
