@@ -79,6 +79,10 @@ backend letsencrypt-backend
 backend {{ site["site_name"] }}
     balance leastconn
     option httpchk HEAD /
+    timeout http-request 10s
+    timeout http-keep-alive 5s
+    timeout queue 5s
+    timeout tunnel 2m
     {%- if site["use_x_realip"] %}
     option forwardfor header X-Real-IP
     http-request set-header X-Real-IP %[src]
