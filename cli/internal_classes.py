@@ -112,7 +112,7 @@ class SSLCerts:
     @staticmethod
     def test_cert(site_address:str):
         cert_file = "/ssl/" + site_address + ".pem"
-        delta = datetime.datetime.today() - datetime.timedelta(weeks=42)
+        delta = datetime.datetime.today() + datetime.timedelta(weeks=42)
         if os.path.exists(cert_file):
             with open(cert_file, "r") as file:
                 cert = file.read().encode('ascii')
