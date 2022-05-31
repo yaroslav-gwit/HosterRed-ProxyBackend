@@ -112,7 +112,7 @@ class SSLCerts:
     @staticmethod
     def test_cert(site_address:str):
         cert_file = "/ssl/" + site_address + ".pem"
-        delta = datetime.datetime.today() + datetime.timedelta(weeks=42)
+        delta = datetime.datetime.today() + datetime.timedelta(weeks=2)
         if os.path.exists(cert_file):
             with open(cert_file, "r") as file:
                 cert = file.read().encode('ascii')
@@ -128,7 +128,7 @@ class SSLCerts:
             except:
                 cert_status = "Not a certificate!"
                 cert_end_date = "N/A"
-        
+
         return {"cert_status": cert_status, "cert_end_date": cert_end_date}
     
 
