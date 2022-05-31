@@ -24,6 +24,7 @@ def add(site_name:str=typer.Argument(..., help="Frontend address"),
         backends:str=typer.Option(..., help="Backend servers, coma separated: 1.1.1.1:433,2.2.2.2:8443"),
         be_http2:bool=typer.Option(True, help="Use HTTP/2 on the backend"),
         be_https:bool=typer.Option(True, help="Use HTTPs on the backend"),
+        be_health_check:bool=typer.Option(False, help="Check if backend server is alive"),
         x_realip:bool=typer.Option(False, help="Use X-Real-IP instead of Forwarded-IP"),
     ):
 
@@ -45,6 +46,7 @@ def add(site_name:str=typer.Argument(..., help="Frontend address"),
         backend_server_dict["backend_server_address"] = backend_server
         backend_server_dict["backend_server_http2"] = be_http2
         backend_server_dict["backend_server_https"] = be_https
+        backend_server_dict["backend_server_health_check"] = be_health_check
         site["backend_servers"].append(backend_server_dict)
 
     yaml_db = IC.YamlFileManipulations().read()
@@ -57,6 +59,31 @@ def add(site_name:str=typer.Argument(..., help="Frontend address"),
     yaml_db["sites"].append(site)
 
     IC.YamlFileManipulations(yaml_input_dict=yaml_db).write()
+
+
+@app.command()
+def remove(site_name:str=typer.Argument(..., help="Site address")):
+    """
+    This argument deals with removing sites from YAML database.
+    """
+    
+    yaml_db = IC.YamlFileManipulations().read()
+    yaml_db_lenght = len(yaml_db["sites"])
+    
+    if yaml_db_lenght == 0:
+        print("The database list is empty! Please add one or more websites.")
+        sys.exit(1)
+
+    for site_number in range(0, yaml_db_lenght):
+        site_name_inThisLoop = yaml_db["sites"][site_number]["site_name"]
+        if site_name == site_name_inThisLoop:
+            del yaml_db["sites"][site_number]
+            print("The site " + site_name + " was removed from our database!")
+            IC.YamlFileManipulations(yaml_input_dict=yaml_db).write()
+            sys.exit(0)
+        elif site_name != site_name_inThisLoop and site_number == yaml_db_lenght-1:
+            print("Site was not found in our database!")
+            break
 
 
 # @app.command()
@@ -83,29 +110,7 @@ def add(site_name:str=typer.Argument(..., help="Frontend address"),
 #             sys.exit(1)
 
 
-# @app.command()
-# def remove(site_name:str=typer.Argument(..., help="Site address")):
-#     """
-#     This argument deals with removing sites from YAML database.
-#     """
-    
-#     yaml_db = IC.YamlFileManipulations().read()
-#     yaml_db_lenght = len(yaml_db["sites"])
-    
-#     if yaml_db_lenght == 0:
-#         print("The database list is empty! Please add one or more websites.")
-#         sys.exit(1)
 
-#     for site_number in range(0, yaml_db_lenght):
-#         site_name_inThisLoop = yaml_db["sites"][site_number]["site_name"]
-#         if site_name == site_name_inThisLoop:
-#             del yaml_db["sites"][site_number]
-#             print("The site " + site_name + " was removed from our database!")
-#             IC.YamlFileManipulations(yaml_input_dict=yaml_db).write()
-#             sys.exit(0)
-#         elif site_name != site_name_inThisLoop and site_number == yaml_db_lenght-1:
-#             print("Site was not found in our database!")
-#             break
 
 
 # @app.command()

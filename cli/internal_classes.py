@@ -3,8 +3,8 @@ from jinja2 import Template
 import yaml
 import os
 import sys
-import logging
-import syslog
+# import logging
+# import syslog
 import subprocess
 
 
@@ -12,7 +12,7 @@ class FileLocations:
     def __init__(self):
         self.haproxy_site_db_location = "db.yml"
         self.haproxy_config_template_location = "haproxy_template.jinja"
-        self.haproxy_config_location = "haproxy.config"
+        self.haproxy_config_location = "/etc/haproxy/haproxy.cfg"
 
 
 class YamlFileManipulations:
@@ -50,8 +50,8 @@ class SSLCerts:
     def new_cert_from_le(self):
         if not self.frontend_adress:
             message_ = "There was no frontend address set!"
-            logging.critical(message_)
-            syslog.syslog(syslog.LOG_CRIT, "CRITICAL ERROR! " + message_)
+            # logging.critical(message_)
+            # syslog.syslog(syslog.LOG_CRIT, "CRITICAL ERROR! " + message_)
             sys.exit(117)
 
         command = "certbot certonly --standalone -d " + self.frontend_adress + " --non-interactive --agree-tos --email=slv@yari.pw --http-01-port=8888"
@@ -107,8 +107,10 @@ class SSLCerts:
         # Return status
         return self
 
-    def test_cert(self):
-        # Check if cert exists
+    @staticmethod
+    def test_cert(site_address:str):
+        if os.path.exists("/ssl/" + site_address + ".pem"):
+            pass
         # Check the date on cert
         # Return status
         return self
@@ -154,8 +156,8 @@ class JinjaReadWrite:
         self.haproxy_config_template = haproxy_config_template
         if not os.path.exists(self.haproxy_config_template):
             message_ = "Template file doesn't exist!"
-            logging.critical(message_)
-            syslog.syslog(syslog.LOG_CRIT, "CRITICAL ERROR! " + message_)
+            # logging.critical(message_)
+            # syslog.syslog(syslog.LOG_CRIT, "CRITICAL ERROR! " + message_)
             sys.exit(118)
 
     def read(self):

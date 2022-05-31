@@ -91,7 +91,7 @@ backend {{ site["site_name"] }}
     {%- endif %}
     {%- for backend in site["backend_servers"] %}
     {%- set number = loop.index %}
-    server {% if backend["backend_server_name"] %}{{ backend["backend_server_name"] }}{% else %}{{ site["site_name"] }}_{{ number }}{% endif %} {{ backend["backend_server_address"] }} check{% if backend["backend_server_http2"] %} ssl verify none{% endif %}{% if backend["backend_server_https"] %} alpn h2,http/1.1{% endif %}
+    server {% if backend["backend_server_name"] %}{{ backend["backend_server_name"] }}{% else %}{{ site["site_name"] }}_{{ number }}{% endif %} {{ backend["backend_server_address"] }}{% if backend["backend_server_health_check"] %} check{% endif %}{% if backend["backend_server_http2"] %} ssl verify none{% endif %}{% if backend["backend_server_https"] %} alpn h2,http/1.1{% endif %}
     {%- endfor %}
 {%- endif %}
 {%- endfor %}

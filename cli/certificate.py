@@ -13,11 +13,10 @@ app = typer.Typer(context_settings=dict(max_content_width=800))
 
 @app.command()
 def request(
-    address:str=typer.Argument(..., help="Site address"),
-    include_www:bool=typer.Option(False, help="Turn on WWW redirection"),
-    fake:bool=typer.Option(False, help="Print out the commands (no execution!)"),
+        address:str=typer.Argument(..., help="Site address"),
+        include_www:bool=typer.Option(False, help="Turn on WWW redirection"),
+        fake:bool=typer.Option(False, help="Print out the commands (no execution!)"),
     ):
-    
     """
     Request a new SSL certificate
     """
@@ -27,11 +26,10 @@ def request(
 
 @app.command()
 def init(
-    fake:bool=typer.Option(False, help="Print out the commands (no execution!)"),
+        fake:bool=typer.Option(False, help="Print out the commands (no execution!)"),
     ):
-    
     """
-    Request a new SSL certificate
+    Generate all missing certificates
     """
     
     IC.SSLCerts(fake=fake).init()
