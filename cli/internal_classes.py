@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import datetime
 from jinja2 import Template
 import yaml
 import os
@@ -111,21 +112,26 @@ class SSLCerts:
     @staticmethod
     def test_cert(site_address:str):
         cert_file = "/ssl/" + site_address + ".pem"
+        delta = datetime.datetime.today() - datetime.timedelta(weeks=42)
         if os.path.exists(cert_file):
             with open(cert_file, "r") as file:
                 cert = file.read().encode('ascii')
-            cert = load_pem_cert(cert)
-            cert_site_name = str(cert.subject).replace("<Name(CN=", "").replace(")>", "")
-            if site_address == cert_site_name:
-                cert_status = "valid"
-            else:
-                cert_status = "not_valid"
-            cert_end_date = cert.not_valid_after
-        # Check the date on cert
-        # Return status
+            try:
+                cert = load_pem_cert(cert)
+                cert_site_name = str(cert.subject).replace("<Name(CN=", "").replace(")>", "")
+                cert_end_date = cert.not_valid_after
+                
+                if site_address == cert_site_name and cert_end_date > delta:
+                    cert_status = "valid"
+                else:
+                    cert_status = "invalid"
+            except:
+                cert_status = "Not a certificate!"
+                cert_end_date = "N/A"
+        
         return {"cert_status": cert_status, "cert_end_date": cert_end_date}
     
-    
+
     def check_if_exist(self):
         return self
 
