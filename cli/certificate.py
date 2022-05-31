@@ -45,7 +45,7 @@ def check(
     
     response = IC.SSLCerts.test_cert(site_address=address)
     cert_status = response["cert_status"]
-    cert_end_date = datetime.date(response["cert_end_date"])
+    cert_end_date = response["cert_end_date"]
     print("Certificate status: " + cert_status)
     print("Certificate end date: " + str(cert_end_date.isoformat))
 
