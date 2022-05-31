@@ -42,7 +42,8 @@ def check(
     Check if valid certificate exists for a given site
     """
     
-    IC.SSLCerts.test_cert(site_address=address)
+    response = IC.SSLCerts.test_cert(site_address=address)
+    print(response)
 
 
 """ If this file is executed from the command line, activate Typer """
