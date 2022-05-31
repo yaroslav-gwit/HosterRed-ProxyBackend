@@ -47,7 +47,7 @@ def check(
     cert_status = response["cert_status"]
     cert_end_date = response["cert_end_date"]
     print("Certificate status: " + cert_status)
-    print("Certificate end date: " + str(cert_end_date.isoformat))
+    print("Certificate end date: " + str(cert_end_date.year))
 
 
 """ If this file is executed from the command line, activate Typer """
