@@ -34,6 +34,16 @@ def init(
     
     IC.SSLCerts(fake=fake).init()
 
+@app.command()
+def check(
+        address:str=typer.Argument(..., help="Site address"),
+    ):
+    """
+    Check if valid certificate exists for a given site
+    """
+    
+    IC.SSLCerts.test_cert(site_address=address)
+
 
 """ If this file is executed from the command line, activate Typer """
 if __name__ == "__main__":
