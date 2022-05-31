@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 # 3rd party imports
+from distutils.command.config import config
 import typer
 
 # internal imports
@@ -20,7 +21,6 @@ def reload(
     """
     IC.ConfigOptions(fake=fake).reload()
 
-
 @app.command()
 def show(
     ):
@@ -28,6 +28,22 @@ def show(
     Print out the config
     """
     print(IC.ConfigOptions().generate())
+
+@app.command()
+def generate(
+    ):
+    """
+    Print out the config
+    """
+    config_file_location = "/etc/haproxy/haproxy.cfg"
+    config_file_content = IC.ConfigOptions().generate()
+
+    with open(config_file_location, "w") as file:
+        file.write(config_file_content)
+    print("New config file was written to: " + config_file_location)
+    
+    IC.ConfigOptions().reload()
+    print("Service was reloaded")
 
 
 """ If this file is executed from the command line, activate Typer """
