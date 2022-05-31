@@ -93,7 +93,11 @@ class SSLCerts:
         for site in yaml_db["sites"]:
             www_redirection = site.get("www_redirection", False)
             frontend_adress = site["site_name"]
-            SSLCerts(frontend_adress=frontend_adress, www_redirection=www_redirection, fake=self.fake).new_cert_from_le()
+            cert_validity = SSLCerts.test_cert(frontend_adress)
+            if cert_validity["cert_status"] != "valid":
+                SSLCerts(frontend_adress=frontend_adress, www_redirection=www_redirection, fake=self.fake).new_cert_from_le()
+            else:
+                print("Certificate is up-to-date: " + frontend_adress)
 
     def create_self_signed(self):
         return self
@@ -131,10 +135,6 @@ class SSLCerts:
 
         return {"cert_status": cert_status, "cert_end_date": cert_end_date}
     
-
-    def check_if_exist(self):
-        return self
-
 
 class ConfigOptions:
     """This class is responsible to generate, reload or test the HAProxy config"""
