@@ -88,6 +88,7 @@ class SSLCerts:
         status = ("Success", "Failure")
         return status
 
+
     def init(self):
         yaml_db = YamlFileManipulations().read()
         for site in yaml_db["sites"]:
@@ -98,6 +99,9 @@ class SSLCerts:
                 SSLCerts(frontend_adress=frontend_adress, www_redirection=www_redirection, fake=self.fake).new_cert_from_le()
             else:
                 print("Certificate is up-to-date: " + frontend_adress)
+
+        ConfigOptions().reload()
+
 
     def create_self_signed(self):
         return self
