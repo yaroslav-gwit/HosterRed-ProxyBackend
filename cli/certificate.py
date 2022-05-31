@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import datetime
 
 # 3rd party imports
 import typer
@@ -43,7 +44,10 @@ def check(
     """
     
     response = IC.SSLCerts.test_cert(site_address=address)
-    print(response)
+    cert_status = response["cert_status"]
+    cert_end_date = datetime.date(response["cert_end_date"])
+    print("Certificate status: " + cert_status)
+    print("Certificate end date: " + str(cert_end_date.isoformat))
 
 
 """ If this file is executed from the command line, activate Typer """
