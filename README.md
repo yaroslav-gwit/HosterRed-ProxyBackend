@@ -12,8 +12,8 @@ Or with debugging enabled:
 curl https://raw.githubusercontent.com/yaroslav-gwit/HosterRed-ProxyBackend/main/install.sh | bash -x
 ```
 
-### Update
-To get the latest updates, just run the installation script again. It will update automatically if the software is already installed
+### Updates
+To get the latest updates, just run the installation script again. It will update everything automatically if the software is already installed.
 ```
 curl https://raw.githubusercontent.com/yaroslav-gwit/HosterRed-ProxyBackend/main/install.sh | bash
 ```
