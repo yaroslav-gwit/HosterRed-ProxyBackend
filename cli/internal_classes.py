@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
+# NATIVE IMPORTS
 import datetime
-from jinja2 import Template
-import yaml
 import os
 import sys
-# import logging
-# import syslog
 import subprocess
+
+# 3RD PARTY MODULES
 from cryptography.x509 import load_pem_x509_certificate as load_pem_cert
+import yaml
+from jinja2 import Template
 
 
 class FileLocations:
@@ -23,7 +24,7 @@ class YamlFileManipulations:
     def __init__(self, yaml_file:str = FileLocations().haproxy_site_db_location, yaml_input_dict = False):
         self.yaml_file = yaml_file
         self.yaml_input_dict = yaml_input_dict
-    
+
     def read(self):
         if not os.path.exists(self.yaml_file) or os.stat(self.yaml_file).st_size == 0:
             yaml_file = { "sites": [] }
@@ -31,7 +32,7 @@ class YamlFileManipulations:
             with open(self.yaml_file, 'r') as file:
                 yaml_file = yaml.safe_load(file)
         return yaml_file
-    
+
     def write(self):
         if self.yaml_input_dict:
             with open(self.yaml_file, 'w') as file:
@@ -48,7 +49,7 @@ class SSLCerts:
         self.frontend_adress = frontend_adress
         self.www_redirection = www_redirection
         self.fake = fake
-    
+
     def new_cert_from_le(self):
         if not self.frontend_adress:
             message_ = "There was no frontend address set!"
@@ -105,11 +106,11 @@ class SSLCerts:
 
     def create_self_signed(self):
         return self
-    
+
     def retire_cert(self):
         # Copy the old cert to "archive" folder before renewal
         return self
-    
+
     def renew_cert(self):
         # Call test_cert function to determine if renewal is needed
         # Call retire function
@@ -138,7 +139,7 @@ class SSLCerts:
                 cert_end_date = "N/A"
 
         return {"cert_status": cert_status, "cert_end_date": cert_end_date}
-    
+
 
 class ConfigOptions:
     """This class is responsible to generate, reload or test the HAProxy config"""
@@ -162,7 +163,7 @@ class ConfigOptions:
                 ssl_folder_not_empty = True
         else:
             ssl_folder_not_empty = False
-        
+
         template = template.render(ssl_folder_not_empty=ssl_folder_not_empty, yaml_db=yaml_db)
         return template
 
