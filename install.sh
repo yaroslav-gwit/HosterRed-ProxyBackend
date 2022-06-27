@@ -5,12 +5,12 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 if [[ ! -d /opt/hoster_red_proxy ]]; then
-    git config pull.rebase false
     mkdir /opt/hoster_red_proxy
     git clone https://github.com/yaroslav-gwit/HosterRed-ProxyBackend.git /opt/hoster_red_proxy/
     cat /opt/hoster_red_proxy/proxy-cli.sh > /bin/proxy-cli
     chmod +x /bin/proxy-cli
     cd /opt/hoster_red_proxy/
+    git config pull.rebase false
     apt install python3-pip python3-venv haproxy
     python3 -m venv .
     source bin/activate
@@ -21,8 +21,8 @@ if [[ ! -d /opt/hoster_red_proxy ]]; then
     echo
     echo "Proxy Manager has been installed!"
 else
-    git config pull.rebase false
     cd /opt/hoster_red_proxy/
+    git config pull.rebase false
     git pull
     source bin/activate
     python3 -m pip install --upgrade pip
