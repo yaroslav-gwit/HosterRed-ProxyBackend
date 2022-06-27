@@ -131,3 +131,4 @@ dmypy.json
 # MY
 db.json
 db.yml
+./.vscode/
