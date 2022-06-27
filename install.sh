@@ -5,6 +5,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 if [[ ! -d /opt/hoster_red_proxy ]]; then
+    git config pull.rebase false
     mkdir /opt/hoster_red_proxy
     git clone https://github.com/yaroslav-gwit/HosterRed-ProxyBackend.git /opt/hoster_red_proxy/
     cat /opt/hoster_red_proxy/proxy-cli.sh > /bin/proxy-cli
@@ -20,6 +21,7 @@ if [[ ! -d /opt/hoster_red_proxy ]]; then
     echo
     echo "Proxy Manager has been installed!"
 else
+    git config pull.rebase false
     cd /opt/hoster_red_proxy/
     git pull
     source bin/activate
