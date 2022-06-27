@@ -17,8 +17,8 @@ if [[ ! -d /opt/hoster_red_proxy ]]; then
     python3 -m pip install -r requirements.txt
     echo "Proxy Manager has been installed!"
 else
-    git pull -C /opt/hoster_red_proxy/
     cd /opt/hoster_red_proxy/
+    git pull
     source bin/activate
     python3 -m pip install --upgrade pip
     python3 -m pip install -r requirements.txt
