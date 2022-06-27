@@ -18,7 +18,7 @@ To get the latest updates, just run the installation script again. It will updat
 curl https://raw.githubusercontent.com/yaroslav-gwit/HosterRed-ProxyBackend/main/install.sh | bash
 ```
 
-## Operating the script
+## Using the script
 These is a built-in documentation for (almost) every feature in this small library. Just use a `--help` flag to get it:
 ```
 proxy-cli --help
