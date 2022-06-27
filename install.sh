@@ -15,6 +15,9 @@ if [[ ! -d /opt/hoster_red_proxy ]]; then
     source bin/activate
     python3 -m pip install --upgrade pip
     python3 -m pip install -r requirements.txt
+    echo
+    echo
+    echo
     echo "Proxy Manager has been installed!"
 else
     cd /opt/hoster_red_proxy/
@@ -24,5 +27,8 @@ else
     python3 -m pip install -r requirements.txt
     cat /opt/hoster_red_proxy/proxy-cli.sh > /bin/proxy-cli
     chmod +x /bin/proxy-cli
+    echo
+    echo
+    echo
     echo "Proxy Manager has been upgraded!"
 fi
