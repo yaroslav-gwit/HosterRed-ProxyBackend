@@ -27,3 +27,7 @@ Add a new site to the database:
 ```
 proxy-cli add gateway-it.com --backends 192.168.120.10:443,192.168.120.11:443 --www-redirection --be-http2 --be-https --be-health-check --x-realip
 ```
+Execute this command to check the flags you need to include/exclude from the command above:
+```
+proxy-cli database add --help
+```
