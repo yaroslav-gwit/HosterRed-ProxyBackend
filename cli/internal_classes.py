@@ -11,6 +11,12 @@ import yaml
 from jinja2 import Template
 
 
+# FILE LOCATIONS
+haproxy_site_db_location = "db.yml"
+haproxy_config_template_location = "haproxy_template.jinja"
+haproxy_config_location = "/etc/haproxy/haproxy.cfg"
+
+
 class FileLocations:
     def __init__(self):
         self.haproxy_site_db_location = "db.yml"
@@ -21,7 +27,7 @@ class FileLocations:
 class YamlFileManipulations:
     """This class is responsible for adding sites, removing sites and editing yaml site DB"""
 
-    def __init__(self, yaml_file:str = FileLocations().haproxy_site_db_location, yaml_input_dict = False):
+    def __init__(self, yaml_file:str = haproxy_site_db_location, yaml_input_dict = False):
         self.yaml_file = yaml_file
         self.yaml_input_dict = yaml_input_dict
 
@@ -172,7 +178,7 @@ class ConfigOptions:
 class JinjaReadWrite:
     """This class is responsible for Jinja2 template file handling"""
 
-    def __init__(self, haproxy_config_template = FileLocations().haproxy_config_template_location):
+    def __init__(self, haproxy_config_template = haproxy_config_template_location):
         self.haproxy_config_template = haproxy_config_template
         if not os.path.exists(self.haproxy_config_template):
             message_ = "Template file doesn't exist!"
