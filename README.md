@@ -1,6 +1,6 @@
 # HosterRed-ProxyBackend
 ## Project overview
-This is a set of Python CLI scripts to generate a reverse proxy (HTTPs only for now) configs for HAProxy. Simplicity is a key in my projects, so as a result a single YAML file is used as a database to keep all of the sites you need.
+This is a set of Python CLI scripts to generate a reverse proxy (HTTPs only for now) configs for HAProxy. Simplicity is a key in my projects, so as a result a single YAML file is used as a database to keep all of the sites you need. Please keep in mind that at the moment only Debian 11 is supported as a host OS.
 ### Installation
 To get started with this project run an installation script (as root!):
 ```
