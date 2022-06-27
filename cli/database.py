@@ -1,6 +1,11 @@
+# SYSTEM IMPORTS
+import sys
+
+# 3RD PARTY IMPORTS
 import typer
 import yaml
-import sys
+
+# INTERNAL IMPORTS
 from cli import internal_classes as IC
 
 
