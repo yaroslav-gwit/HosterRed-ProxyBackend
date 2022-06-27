@@ -4,6 +4,39 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
+if [[ ! -d /ssl/ ]]; then
+    mkdir /ssl/
+    chmod g-w /ssl/
+    chmod o-w /ssl/
+    chmod g+r /ssl/
+    chmod o+r /ssl/
+    chmod g+x /ssl/
+    chmod o+x /ssl/
+    for FILE in $(ls -1 /ssl/); do
+        chmod g-w /ssl/$FILE
+        chmod g-x /ssl/$FILE
+        chmod o-w /ssl/$FILE
+        chmod o-x /ssl/$FILE
+        chmod g+r /ssl/$FILE
+        chmod o+r /ssl/$FILE
+    done
+else
+    chmod g-w /ssl/
+    chmod o-w /ssl/
+    chmod g+r /ssl/
+    chmod o+r /ssl/
+    chmod g+x /ssl/
+    chmod o+x /ssl/
+    for FILE in $(ls -1 /ssl/); do
+        chmod g-w /ssl/$FILE
+        chmod g-x /ssl/$FILE
+        chmod o-w /ssl/$FILE
+        chmod o-x /ssl/$FILE
+        chmod g+r /ssl/$FILE
+        chmod o+r /ssl/$FILE
+    done
+fi
+
 if [[ ! -d /opt/hoster_red_proxy ]]; then
     mkdir /opt/hoster_red_proxy
     git clone https://github.com/yaroslav-gwit/HosterRed-ProxyBackend.git /opt/hoster_red_proxy/
