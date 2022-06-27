@@ -7,3 +7,4 @@ else
     cd /opt/hoster_red_proxy/
     source bin/activate
     python3 proxy-cli --help
+fi
