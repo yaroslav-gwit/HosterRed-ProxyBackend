@@ -10,7 +10,7 @@ if [[ ! -d /opt/hoster_red_proxy ]]; then
     cat /opt/hoster_red_proxy/proxy-cli.sh > /bin/proxy-cli
     chmod +x /bin/proxy-cli
     cd /opt/hoster_red_proxy/
-    apt install python3-pip python3-venv
+    apt install python3-pip python3-venv haproxy
     python3 -m venv .
     source bin/activate
     python3 -m pip install --upgrade pip
