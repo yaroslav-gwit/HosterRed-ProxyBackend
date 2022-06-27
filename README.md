@@ -53,3 +53,8 @@ Options:
   --x-realip / --no-x-realip      Use X-Real-IP instead of Forwarded-IP  [default: no-x-realip]
   --help                          Show this message and exit.
 ```
+
+Finally execute the command below to get all of the certificates for active websites:
+```
+proxy-cli certificate init
+```
