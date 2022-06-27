@@ -19,7 +19,7 @@ curl https://raw.githubusercontent.com/yaroslav-gwit/HosterRed-ProxyBackend/main
 ```
 
 ## Using the script
-These is a built-in documentation for (almost) every feature in this small library. Just use a `--help` flag to get it:
+There is a built-in documentation for (almost) every feature in this small library. Just use a `--help` flag to get it:
 ```
 proxy-cli --help
 ```
