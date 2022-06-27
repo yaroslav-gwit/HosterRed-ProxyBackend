@@ -115,9 +115,6 @@ def remove(site_name:str=typer.Argument(..., help="Site address")):
 #             sys.exit(1)
 
 
-
-
-
 # @app.command()
 # def backend_add(site_name:str=typer.Argument(..., help="Add new site to the database."),
 #         backend:str=typer.Option(..., help="Backend servers, coma separated: 1.1.1.1:433,2.2.2.2:8443"),
