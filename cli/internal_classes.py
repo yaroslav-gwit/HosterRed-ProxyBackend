@@ -17,11 +17,11 @@ haproxy_config_template_location = "haproxy_template.jinja"
 haproxy_config_location = "/etc/haproxy/haproxy.cfg"
 
 
-class FileLocations:
-    def __init__(self):
-        self.haproxy_site_db_location = "db.yml"
-        self.haproxy_config_template_location = "haproxy_template.jinja"
-        self.haproxy_config_location = "/etc/haproxy/haproxy.cfg"
+# class FileLocations:
+#     def __init__(self):
+#         self.haproxy_site_db_location = "db.yml"
+#         self.haproxy_config_template_location = "haproxy_template.jinja"
+#         self.haproxy_config_location = "/etc/haproxy/haproxy.cfg"
 
 
 class YamlFileManipulations:
