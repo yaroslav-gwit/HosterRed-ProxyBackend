@@ -18,6 +18,10 @@ if [[ ! -d /opt/hoster_red_proxy ]]; then
     echo "Proxy Manager has been installed!"
 else
     git pull -C /opt/hoster_red_proxy/
+    cd /opt/hoster_red_proxy/
+    source bin/activate
+    python3 -m pip install --upgrade pip
+    python3 -m pip install -r requirements.txt
     cat /opt/hoster_red_proxy/proxy-cli.sh > /bin/proxy-cli
     chmod +x /bin/proxy-cli
     echo "Proxy Manager has been upgraded!"
