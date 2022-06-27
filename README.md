@@ -4,11 +4,11 @@ This is a set of Python CLI scripts to generate a reverse proxy (HTTPs only for 
 </br>To get started with this project run an installation script:
 ```
 # As root user run:
-curl <raw_file_link> | bash
+curl https://raw.githubusercontent.com/yaroslav-gwit/HosterRed-ProxyBackend/main/install.sh | bash
 # Or with debugging enabled
-curl <raw_file_link> | bash -x
+curl https://raw.githubusercontent.com/yaroslav-gwit/HosterRed-ProxyBackend/main/install.sh | bash -x
 ```
-## Installation
+## Update
 ```
 installation procedure here
 ```
