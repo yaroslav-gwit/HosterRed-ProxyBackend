@@ -119,6 +119,10 @@ class SSLCerts:
     def test_cert(site_address:str) -> dict:
         cert_file = "/ssl/" + site_address + ".pem"
         delta = datetime.datetime.today() + datetime.timedelta(weeks=2)
+
+        cert_status = ""
+        cert_end_date = ""
+
         if os.path.exists(cert_file):
             with open(cert_file, "r") as file:
                 cert = file.read().encode('ascii')
