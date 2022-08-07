@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # 3rd party imports
-from distutils.command.config import config
+# from distutils.command.config import config
 import typer
 
 # internal imports
