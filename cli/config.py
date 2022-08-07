@@ -33,7 +33,7 @@ def show(
 def generate(
     ):
     """
-    Print out the config
+    Generate new config and reload the HAProxy service
     """
     config_file_location = "/etc/haproxy/haproxy.cfg"
     config_file_content = IC.ConfigOptions().generate()
