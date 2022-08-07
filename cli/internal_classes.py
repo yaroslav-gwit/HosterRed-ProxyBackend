@@ -116,7 +116,7 @@ class SSLCerts:
         return self
 
     @staticmethod
-    def test_cert(site_address:str):
+    def test_cert(site_address:str) -> dict:
         cert_file = "/ssl/" + site_address + ".pem"
         delta = datetime.datetime.today() + datetime.timedelta(weeks=2)
         if os.path.exists(cert_file):
@@ -134,6 +134,9 @@ class SSLCerts:
             except:
                 cert_status = "Not a certificate!"
                 cert_end_date = "N/A"
+        else:
+            cert_status = "Cert doesn't exist yet!"
+            cert_end_date = "N/A"
 
         return {"cert_status": cert_status, "cert_end_date": cert_end_date}
 
