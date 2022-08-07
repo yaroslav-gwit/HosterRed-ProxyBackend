@@ -1,16 +1,11 @@
 #!/usr/bin/env python3
-import datetime
-
 # 3rd party imports
 import typer
-
 # internal imports
 from cli import internal_classes as IC
 
-
 """ Section below is responsible for the CLI input/output """
 app = typer.Typer(context_settings=dict(max_content_width=800))
-
 
 @app.command()
 def request(
@@ -21,9 +16,7 @@ def request(
     """
     Request a new SSL certificate
     """
-    
     IC.SSLCerts(fake=fake, frontend_adress=address, www_redirection=include_www).new_cert_from_le()
-
 
 @app.command()
 def init(
@@ -32,7 +25,6 @@ def init(
     """
     Generate all missing certificates
     """
-    
     IC.SSLCerts(fake=fake).init()
 
 @app.command()
@@ -42,7 +34,6 @@ def check(
     """
     Check if valid certificate exists for a given site
     """
-    
     response = IC.SSLCerts.test_cert(site_address=address)
     cert_status = response["cert_status"]
     cert_end_date = response["cert_end_date"]
