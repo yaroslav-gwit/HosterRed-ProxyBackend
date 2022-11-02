@@ -1,4 +1,5 @@
-typer
+typer[all]
+Rich
 Jinja2
 pyyaml
 cryptography
