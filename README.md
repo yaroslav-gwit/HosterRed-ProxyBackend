@@ -25,7 +25,7 @@ proxy-cli --help
 ```
 Add a new site to the database:
 ```
-proxy-cli add gateway-it.com --backends 192.168.120.10:443,192.168.120.11:443 --www-redirection --be-http2 --be-https --be-health-check --x-realip
+proxy-cli database add gateway-it.com --backends 192.168.120.10:443,192.168.120.11:443 --www-redirection --be-http2 --be-https --be-health-check --x-realip
 ```
 Execute this command to check the flags you need to include/exclude from the command above:
 ```
@@ -56,5 +56,6 @@ Options:
 
 Finally execute the command below to get all of the certificates for active websites:
 ```
+proxy-cli config generate
 proxy-cli certificate init
 ```
