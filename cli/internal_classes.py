@@ -162,11 +162,10 @@ class ConfigOptions:
         yaml_db = YamlFileManipulations().read()
         template = Template(JinjaReadWrite().read())
 
+        ssl_folder_not_empty = False
         if os.path.exists("/ssl/"):
             if len(os.listdir("/ssl/")) != 0:
                 ssl_folder_not_empty = True
-        else:
-            ssl_folder_not_empty = False
 
         template = template.render(ssl_folder_not_empty=ssl_folder_not_empty, yaml_db=yaml_db)
         return template
