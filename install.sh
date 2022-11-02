@@ -4,6 +4,8 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
+apt install certbot haproxy
+
 if [[ ! -d /ssl/ ]]; then
     mkdir /ssl/
 fi
